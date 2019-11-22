@@ -39,10 +39,14 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
+        /* This test is to ensure that each feed in the allFeeds
+         * Array has a name property with a value and not empty
          */
+        it('Each feed has a name', function() {
+            let allHaveName = allFeeds.every(feed => feed.name);
+
+            expect(allHaveName).toBeTruthy();
+        });
     });
 
 
