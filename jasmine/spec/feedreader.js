@@ -27,10 +27,16 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
+        /* This test is to make sure that every element(feed) in
+         * allFeeds Array has a url propery and that the URL is not empty.
          */
+        it('Each feed has a URL', function() {
+            // the returned value of every() is true if all elements
+            // in allFeeds Array has a url property with truthy value.
+            let allHaveURL = allFeeds.every(feed => feed.url);
+
+            expect(allHaveURL).toBeTruthy();
+        });
 
 
         /* TODO: Write a test that loops through each feed
