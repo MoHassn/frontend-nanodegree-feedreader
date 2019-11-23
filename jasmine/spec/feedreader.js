@@ -107,10 +107,32 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /**
+     * This test suite to ensure that a new feed is loaded
+     * when the loadFeed() function is called with different
+     * index
+     */
+    describe('New Feed Selection', function() {
+        let oldContent, newContent; // To catch the feed in different call cases (different indexes)
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+        /**
+         * To ensure that loadFeed finishes before test specs are performed
+         * the second call of the loadFeed() is performed in the callback
+         * so it won't run until the first finishes
          */
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                oldContent = document.querySelector('.feed').innerHTML;
+                loadFeed(1, function() {
+                    newContent = document.querySelector('.feed').innerHTML;
+                    done();
+                });
+            });
+        });
+
+        it('ensures when a new feed is loaded the content actually changes', function(done) {
+            expect(oldContent == newContent).toBe(false);
+            done();
+        });
+    });
 }());
