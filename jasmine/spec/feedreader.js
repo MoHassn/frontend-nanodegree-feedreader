@@ -83,14 +83,29 @@ $(function() {
 
     });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
-
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
+    /**
+     * This suite is to ensure that after the loadFeed
+     * finishes the .feed has at least .entry inside it.
+     */
+    describe('Initial Entries', function() {
+        // To ensure that the loadFeed() finishes before
+        // running the test specs
+        beforeEach(function(done){
+            loadFeed(0, function() {
+                done();
+            });
+        });
+        /**
+         * This spec is to ensure that the .feed has at least .entry
+         * element after the loadFeed() finishes
          */
+        it('There is at least a single element withing feed container after calling loadFeed()', function(done){
+
+            expect($('.feed').has('.entry').length).toBeTruthy();
+            done();
+        });
+    });
+
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
