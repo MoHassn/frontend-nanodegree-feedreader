@@ -51,13 +51,6 @@ $(function() {
 
 
 
-
-    /* TODO: Write a test that ensures the menu changes
-    * visibility when the menu icon is clicked. This test
-    * should have two expectations: does the menu display when
-    * clicked and does it hide when clicked again.
-    */
-
     /**
      * This test suite is to ensure that the menu is hidden
      * by default and it changes visibility when the menu icon
@@ -72,6 +65,22 @@ $(function() {
 
             expect(hidden).toBe(true);
         });
+
+        /**
+         * This spec to ensure that the menu changes the visibility when
+         * clicking the menu icon.
+         */
+        it('The menu changes visibility when the menu icon is clicked', function() {
+            let menuIcon = document.querySelector('.menu-icon-link');
+            let body = document.querySelector('body');
+
+            menuIcon.click(); // Simulates a mouse click on an element.
+            expect(body.classList.contains('menu-hidden')).toBe(false);
+
+            menuIcon.click();
+            expect(body.classList.contains('menu-hidden')).toBe(true);
+        });
+
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
